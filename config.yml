@@ -1,0 +1,9 @@
+datadir: './data/obspack_ch4_1_GLOBALVIEWplus_v6.0_2023-12-01/data/nc'
+outdir: './data/processed'
+start_time: '2022-01-01' # YYYY-MM-DD
+end_time: '2022-01-02' # YYYY-MM-DD inclusive
+lat_min: -90
+lat_max: 90
+lon_min: -180
+lon_max: 180
+outfile_name_stem: obspack_ch4.%Y%m%d.nc

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#SBATCH -c 28
+#SBATCH -t 0-24:00
+#SBATCH -p seas_compute,sapphire
+#SBATCH --mem=256G
+#SBATCH -J combine_obs
+
+python process_obspack.py
