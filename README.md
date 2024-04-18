@@ -1,6 +1,9 @@
 # Process Obspack CH4 for GEOS-Chem
 Author: James East with contributions from Harvard ACMG
 
+## What does it do?
+Processes Obspack CH4 output datasets into daily netcdf files to be read by GEOS-Chem's obspack capability. Daily files produced with this program differ from the "daily" files directly available from Obspack. Specifically, they include extra variables including the sampling strategy, the quality flag for each observation, and assimilation concerns.
+
 ## How to use
 1. Obtain data
     1. request data by filling out form at `https://gml.noaa.gov/ccgg/obspack/data.php`
@@ -10,7 +13,7 @@ Author: James East with contributions from Harvard ACMG
     5. download data: `./get.sh`
     
 2. Customize options by editing `config.yml` file
-    * `datadir` is where raw data is located, shouldn't need to be changed unless you obspack version is not CH4 GLOBALVIEWplus_v6.0_2023-12-01
+    * `datadir` is where raw data is located, shouldn't need to be changed unless your obspack version is not CH4 GLOBALVIEWplus_v6.0_2023-12-01
     * `outdir` is where processed data will be stored
     * `outfile_name_stem` is the output file name pattern with date components interpretable by `strftime`
     

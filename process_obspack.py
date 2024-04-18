@@ -4,7 +4,9 @@ import numpy as np
 import pandas as pd
 import yaml
 import os
+import functools
 
+print = functools.partial(print, flush=True)
 
 
 def getfiles(config):
