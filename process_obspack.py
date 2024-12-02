@@ -66,21 +66,21 @@ def filter_obspack(data):
 
     # Subset for time and location
     data = data.where(
-        (data['time'] >= config['start_time']) &
-        (data['time'] <= config['end_time']+pd.Timedelta('1D')),
+        (data['time'] >= config['start_time']).compute() &
+        (data['time'] <= config['end_time']+pd.Timedelta('1D')).compute(),
         #data['time'].dt.year.isin(keepyears),
         drop=True
     )
 
     data = data.where(
-        (data['latitude'] >= config['lat_min']) & 
-        (data['latitude'] <= config['lat_max']),
+        (data['latitude'] >= config['lat_min']).compute() & 
+        (data['latitude'] <= config['lat_max']).compute(),
         drop=True
     )
     
     data = data.where(
-        (data['longitude'] >= config['lon_min']) & 
-        (data['longitude'] <= config['lon_max']),
+        (data['longitude'] >= config['lon_min']).compute() & 
+        (data['longitude'] <= config['lon_max']).compute(),
         drop=True
     )
 
@@ -179,9 +179,9 @@ def open_all_files(myfiles, config):
 def saveday(ds, mydate, config):
     daily = ds.where(
         (
-            (ds['time'] >= mydate) & 
-            (ds['time'] < mydate+pd.Timedelta('1D')) &
-            (ds['CT_sampling_strategy'].isin([1,2,3,4]))
+            (ds['time'] >= mydate).compute() & 
+            (ds['time'] < mydate+pd.Timedelta('1D')).compute() &
+            (ds['CT_sampling_strategy'].isin([1,2,3,4])).compute()
         ),
         drop=True
     )
@@ -215,7 +215,7 @@ def saveday(ds, mydate, config):
                 v:{'complevel':1,'zlib':True}
                 for v in daily.data_vars
             },
-            'time':{'units':tunits,'calendar':'proleptic_gregorian'}
+            'time':{'units': tunits, 'calendar': 'proleptic_gregorian', 'dtype': np.int64}
         }
     )
 
